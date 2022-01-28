@@ -1,0 +1,47 @@
+.create-employee-content {
+   box-sizing: border-box;
+   background-color: white;
+   width: 600px;
+   height: 100vh;
+   margin: 0 auto;
+   padding: 2rem;
+   color: #343e7a;
+   h1 {
+      text-align: center;
+   }
+   form {
+      background-color: white;
+      margin-top: 3rem;
+      p {
+         font-weight: bold;
+      }
+      .input-wrapper {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         text-align: left;
+         margin-bottom: 1rem;
+
+         label {
+            font-weight: bold;
+         }
+         input {
+            padding: 5px;
+            font-size: 1.2rem;
+         }
+      }
+      .submit-btn {
+         display: block;
+         width: 50%;
+         padding: 1rem;
+         font-size: 1.1rem;
+         font-weight: bold;
+         margin: 3rem auto 0 auto;
+         background-color: #b4d0f6;
+         color: #fff;
+         border: none;
+         border-radius: 10px;
+         text-align: center;
+      }
+   }
+}

@@ -1,0 +1,26 @@
+.header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 1rem;
+   &_logo {
+      display: flex;
+      align-items: center;
+      width: 200px;
+   }
+   .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 20px;
+      &_item {
+         font-weight: bold;
+         color: #343e7a;
+         text-decoration: none;
+         margin-right: 2rem;
+         &:hover {
+            text-decoration: underline;
+         }
+      }
+   }
+}
