@@ -1,0 +1,14 @@
+.CalendarDay__selected {
+   background: #343e7a;
+   color: white;
+   border: 1px solid #343e7a;
+}
+
+.CalendarDay__selected:hover {
+   background: #b4d0f6;
+   color: white;
+}
+
+.DateInput_input__focused {
+   border-bottom: 2px solid #343e7a;
+}

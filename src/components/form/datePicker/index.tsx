@@ -1,6 +1,6 @@
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import 'react-dates/lib/css/react_dates_overrides.css';
+import './react_dates_overrides.css';
 import React, { useState } from 'react';
 import moment from 'moment';
 
