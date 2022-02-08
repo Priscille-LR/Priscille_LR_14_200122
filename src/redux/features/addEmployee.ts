@@ -21,8 +21,8 @@ const initialState: IEmployee[] = [
       startDate: JSON.stringify(moment()),
       street: 'Paper Street',
       city: 'Scranton',
-      state: 'Pensylvannia',
       zipCode: 2845,
+      state: 'Pensylvannia',
       department: 'Sales',
    },
    {
@@ -32,15 +32,27 @@ const initialState: IEmployee[] = [
       startDate: JSON.stringify(moment()),
       street: 'Paper Street',
       city: 'Scranton',
-      state: 'Pensylvannia',
       zipCode: 2845,
+      state: 'Pensylvannia',
       department: 'Marketing',
    },
 ];
 
-const sessionState: IEmployee[] = JSON.parse(
-   window.localStorage.getItem('employees') ?? JSON.stringify(initialState)
+  const sessionState: IEmployee[] = JSON.parse(
+   (window.localStorage.getItem('employees')?.length === 0
+      ? null
+      : window.localStorage.getItem('employees')) ??
+      JSON.stringify(initialState)
 );
+
+// const sessionState = () => {
+//    try { 
+//       JSON.parse(window.localStorage.getItem('employees'))
+//    } catch () {
+//       JSON.stringify(initialState)
+//    }
+// }
+
 
 const { actions, reducer } = createSlice({
    name: 'employee',
@@ -51,7 +63,6 @@ const { actions, reducer } = createSlice({
             payload: employee,
          }),
          reducer: (draft, action: PayloadAction<IEmployee>) => {
-            console.log('blabla' + action.payload.firstName);
             draft.push(action.payload);
             window.localStorage.setItem('employees', JSON.stringify(draft));
             return;

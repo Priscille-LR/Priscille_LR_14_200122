@@ -6,7 +6,6 @@ import moment, { Moment } from 'moment';
 import './form.scss';
 import { departments } from '../../data/departments';
 import { states } from '../../data/states';
-//import { ModalSuccess } from '../modal';
 import { Modal } from '@priscille-lr/react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -27,7 +26,7 @@ export const Form = () => {
    const [state, setState] = useState<string>('');
    const [department, setDepartment] = useState<string>('');
 
-   const [showModal, setShowModal] = useState(true);
+   const [showModal, setShowModal] = useState(false);
 
    const employee: IEmployee = {
       firstName: firstName,
@@ -46,69 +45,71 @@ export const Form = () => {
    const handleSubmit = (e: React.SyntheticEvent) => {
       e.preventDefault();
       dispatch(addEmployee(employee));
-
-      //setShowModal(true);
-      // dispatch(reset());
+      setShowModal(true);
+      //dispatch(reset());
    };
 
-   return (
-      <section className="create-employee-content">
-         <h1>Create Employee</h1>
-         <form onSubmit={handleSubmit}>
-            <FormInput
-               label={'First Name'}
-               type="text"
-               callback={setFirstName}
-            />
-            <FormInput label={'Last Name'} type="text" callback={setLastName} />
+   console.log(showModal);
 
-            {/* <FormDateInput label={'Date of Birth'} type="date" callback={setDateOfBirth} /> */}
+   if (!showModal) {
+      return (
+         <section className="create-employee-content">
+            <h1>Create Employee</h1>
+            <form onSubmit={handleSubmit}>
+               <FormInput
+                  label={'First Name'}
+                  type="text"
+                  callback={setFirstName}
+               />
+               <FormInput
+                  label={'Last Name'}
+                  type="text"
+                  callback={setLastName}
+               />
 
-            <DatePicker
-               name={'Date of Birth'}
-               currentDate={dateOfBirth}
-               callback={setDateOfBirth}
-            />
-            <DatePicker
-               name={'Start Date'}
-               currentDate={startDate}
-               callback={setStartDate}
-            />
+               {/* <FormDateInput label={'Date of Birth'} type="date" callback={setDateOfBirth} /> */}
 
-            <h2>Adress</h2>
-            <FormInput label={'Street'} type="text" callback={setStreet} />
-            <FormInput label={'City'} type="text" callback={setCity} />
-            <FormNumberInput
-               label={'Zip Code'}
-               type="number"
-               callback={setZipCode}
-            />
-            <p>State</p>
-            <Select label={'State'} options={states} callback={setState} />
+               <DatePicker
+                  name={'Date of Birth'}
+                  currentDate={dateOfBirth}
+                  callback={setDateOfBirth}
+               />
+               <DatePicker
+                  name={'Start Date'}
+                  currentDate={startDate}
+                  callback={setStartDate}
+               />
 
-            <h2>Department</h2>
-            <Select
-               label={'Department'}
-               options={departments}
-               callback={setDepartment}
-            />
+               <h2>Adress</h2>
+               <FormInput label={'Street'} type="text" callback={setStreet} />
+               <FormInput label={'City'} type="text" callback={setCity} />
+               <FormNumberInput
+                  label={'Zip Code'}
+                  type="number"
+                  callback={setZipCode}
+               />
+               <p>State</p>
+               <Select label={'State'} options={states} callback={setState} />
 
-            <button className="submit-btn">Save</button>
-         </form>
+               <h2>Department</h2>
+               <Select
+                  label={'Department'}
+                  options={departments}
+                  callback={setDepartment}
+               />
 
-         {showModal && (
-            <div className="modal">
-               <p>Im a modal</p>
-               {
-                  // <Modal
-                  //    setShowModal={(toto: boolean) => {}}
-                  //    modalTitle={'Success !'}
-                  //    modalMessage={'Employee has been saved'}
-                  //    buttonContent={'Close'}
-                  // />
-               }
-            </div>
-         )}
-      </section>
-   );
+               <button className="submit-btn">Save</button>
+            </form>
+         </section>
+      );
+   } else {
+      return (
+         <Modal
+            setShowModal={setShowModal}
+            modalTitle={'Success !'}
+            modalMessage={'Employee has been saved'}
+            buttonContent={'Close'}
+         />
+      );
+   }
 };
