@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { BasicTable } from '../../components/table/BasicTable';
+import { SortingTable } from '../../components/table';
 
 export const EmployeeList = () => (
    <div>
-      <BasicTable />
+      <SortingTable />
    </div>
 );

@@ -49,8 +49,6 @@ export const Form = () => {
       //dispatch(reset());
    };
 
-   console.log(showModal);
-
    if (!showModal) {
       return (
          <section className="create-employee-content">
