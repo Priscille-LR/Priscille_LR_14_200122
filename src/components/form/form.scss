@@ -12,9 +12,12 @@
    form {
       background-color: white;
       margin-top: 3rem;
-      p {
+      p,
+      span {
          font-weight: bold;
+         margin-bottom: 0;
       }
+
       .input-wrapper {
          display: flex;
          flex-direction: column;
@@ -27,7 +30,7 @@
          }
          input {
             padding: 5px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
          }
       }
       .submit-btn {

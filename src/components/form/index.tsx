@@ -46,68 +46,63 @@ export const Form = () => {
       e.preventDefault();
       dispatch(addEmployee(employee));
       setShowModal(true);
-      //dispatch(reset());
+
+      const target = e.target as HTMLFormElement;
+      target.reset();
    };
 
-   if (!showModal) {
-      return (
-         <section className="create-employee-content">
-            <h1>Create Employee</h1>
-            <form onSubmit={handleSubmit}>
-               <FormInput
-                  label={'First Name'}
-                  type="text"
-                  callback={setFirstName}
-               />
-               <FormInput
-                  label={'Last Name'}
-                  type="text"
-                  callback={setLastName}
-               />
+   return (
+      <section className="create-employee-content">
+         <h1>Create Employee</h1>
+         <form onSubmit={handleSubmit}>
+            <FormInput
+               label={'First Name'}
+               type="text"
+               callback={setFirstName}
+            />
+            <FormInput label={'Last Name'} type="text" callback={setLastName} />
 
-               {/* <FormDateInput label={'Date of Birth'} type="date" callback={setDateOfBirth} /> */}
+            {/* <FormDateInput label={'Date of Birth'} type="date" callback={setDateOfBirth} /> */}
 
-               <DatePicker
-                  name={'Date of Birth'}
-                  currentDate={dateOfBirth}
-                  callback={setDateOfBirth}
-               />
-               <DatePicker
-                  name={'Start Date'}
-                  currentDate={startDate}
-                  callback={setStartDate}
-               />
+            <DatePicker
+               name={'Date of Birth'}
+               currentDate={dateOfBirth}
+               callback={setDateOfBirth}
+            />
+            <DatePicker
+               name={'Start Date'}
+               currentDate={startDate}
+               callback={setStartDate}
+            />
 
-               <h2>Adress</h2>
-               <FormInput label={'Street'} type="text" callback={setStreet} />
-               <FormInput label={'City'} type="text" callback={setCity} />
-               <FormNumberInput
-                  label={'Zip Code'}
-                  type="number"
-                  callback={setZipCode}
-               />
-               <p>State</p>
-               <Select label={'State'} options={states} callback={setState} />
+            <h2>Adress</h2>
+            <FormInput label={'Street'} type="text" callback={setStreet} />
+            <FormInput label={'City'} type="text" callback={setCity} />
+            <FormNumberInput
+               label={'Zip Code'}
+               type="number"
+               callback={setZipCode}
+            />
+            <span>State</span>
+            <Select label={'State'} options={states} callback={setState} />
 
-               <h2>Department</h2>
-               <Select
-                  label={'Department'}
-                  options={departments}
-                  callback={setDepartment}
-               />
+            <h2>Department</h2>
+            <Select
+               label={'Department'}
+               options={departments}
+               callback={setDepartment}
+            />
 
-               <button className="submit-btn">Save</button>
-            </form>
-         </section>
-      );
-   } else {
-      return (
-         <Modal
-            setShowModal={setShowModal}
-            modalTitle={'Success !'}
-            modalMessage={'Employee has been saved'}
-            buttonContent={'Close'}
-         />
-      );
-   }
+            <button className="submit-btn">Save</button>
+         </form>
+         {showModal && (
+            <Modal
+               setShowModal={setShowModal}
+               modalTitle={'Success !'}
+               modalMessage={'Employee has been created'}
+               buttonContent={'Close'}
+            />
+         )}
+      </section>
+   );
 };

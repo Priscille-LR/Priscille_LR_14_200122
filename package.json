@@ -4,7 +4,7 @@
    "private": true,
    "dependencies": {
       "@babel/runtime": "^7.16.7",
-      "@priscille-lr/react-modal": "^1.0.29",
+      "@priscille-lr/react-modal": "^1.0.33",
       "@reduxjs/toolkit": "^1.7.1",
       "@testing-library/jest-dom": "^5.16.1",
       "@testing-library/react": "^12.1.2",

@@ -9,6 +9,16 @@
    color: white;
 }
 
+.SingleDatePickerInput__withBorder {
+   border: none;
+}
+
+.DateInput_input {
+   padding: 5px;
+   border: 0.4px solid #000;
+   border-radius: 2px;
+}
+
 .DateInput_input__focused {
    border-bottom: 2px solid #343e7a;
 }
