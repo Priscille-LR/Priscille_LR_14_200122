@@ -19,40 +19,39 @@ const initialState: IEmployee[] = [
       lastName: 'Halpert',
       dateOfBirth: JSON.stringify(moment()),
       startDate: JSON.stringify(moment()),
+      department: 'Sales',
       street: 'Paper Street',
       city: 'Scranton',
       zipCode: 2845,
       state: 'Pensylvannia',
-      department: 'Sales',
    },
    {
       firstName: 'Pam',
       lastName: 'Beesly',
       dateOfBirth: JSON.stringify(moment()),
       startDate: JSON.stringify(moment()),
+      department: 'Marketing',
       street: 'Paper Street',
       city: 'Scranton',
       zipCode: 2845,
       state: 'Pensylvannia',
-      department: 'Marketing',
    },
 ];
 
-  const sessionState: IEmployee[] = JSON.parse(
-   (window.localStorage.getItem('employees')?.length === 0
-      ? null
-      : window.localStorage.getItem('employees')) ??
-      JSON.stringify(initialState)
-);
-
-// const sessionState = () => {
-//    try { 
-//       JSON.parse(window.localStorage.getItem('employees'))
-//    } catch () {
+//   const sessionState: IEmployee[] = JSON.parse(
+//    (window.localStorage.getItem('employees')?.length === 0
+//       ? null
+//       : window.localStorage.getItem('employees')) ??
 //       JSON.stringify(initialState)
-//    }
-// }
+// );
 
+const sessionState = () => {
+   try {
+      return JSON.parse(window.localStorage.getItem('employees') ?? '');
+   } catch {
+      return initialState;
+   }
+};
 
 const { actions, reducer } = createSlice({
    name: 'employee',

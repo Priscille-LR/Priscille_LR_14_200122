@@ -1,3 +1,7 @@
+/**
+ * create reusable selects for the form
+ */
+
 interface ISelect {
    label: string;
    options: Array<string>;

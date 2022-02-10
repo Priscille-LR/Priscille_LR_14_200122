@@ -1,5 +1,9 @@
 import './globalFilter.scss';
 
+/**
+ * global filtering functionality
+ */
+
 interface IGlobalFilter {
    filter: string;
    setFilter: React.Dispatch<React.SetStateAction<string>>;

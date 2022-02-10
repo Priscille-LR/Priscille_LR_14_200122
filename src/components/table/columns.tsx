@@ -1,19 +1,24 @@
 import { Column } from 'react-table';
+import { format } from 'date-fns';
+import moment, { Moment } from 'moment';
+
+/**
+ * employees table columns
+ */
 
 export type cols = {
    firstName: string;
    lastName: string;
    dateOfBirth: string;
    startDate: string;
+   department: string;
    street: string;
    city: string;
    state: string;
    zipCode: number;
-   department: string;
 };
 
 export const COLUMNS: Column<cols>[] = [
-   //export const COLUMNS = [
    {
       Header: 'Firstname',
       accessor: 'firstName',
@@ -25,10 +30,20 @@ export const COLUMNS: Column<cols>[] = [
    {
       Header: 'Date of Birth',
       accessor: 'dateOfBirth',
+      Cell: ({ value }) => {
+         return moment(value, 'YYYY-MM-DDTHH:mm:ssZ').format('DD/MM/YYYY'); //format date
+      },
    },
    {
       Header: 'Start Date',
       accessor: 'startDate',
+      Cell: ({ value }) => {
+         return moment(value, 'YYYY-MM-DDTHH:mm:ssZ').format('DD/MM/YYYY');
+      },
+   },
+   {
+      Header: 'Department',
+      accessor: 'department',
    },
    {
       Header: 'Street',
@@ -45,9 +60,5 @@ export const COLUMNS: Column<cols>[] = [
    {
       Header: 'State',
       accessor: 'state',
-   },
-   {
-      Header: 'Department',
-      accessor: 'department',
    },
 ];

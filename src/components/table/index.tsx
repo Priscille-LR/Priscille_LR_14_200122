@@ -12,13 +12,30 @@ import { cols } from './columns';
 import { GlobalFilter } from './filter/GlobalFilter';
 import './table.scss';
 
-export const SortingTable = () => {
+/**
+ * table listing current employees
+ * with functionalities such as sorting (asc/desc), filtering, and pagination options
+ */
+
+export const EmployeesTable: React.FC = () => {
    const columns = useMemo<Column<cols>[]>(() => COLUMNS, []); //ensures data is not recreated on every render
-   const data = useMemo<cols[]>(() => mockData, []);
+
+   //const employees = window.localStorage.getItem('employees')
+   //|| mockData;
+
+   const employees = JSON.parse(
+      (window.localStorage.getItem('employees')?.length === 0
+         ? null
+         : window.localStorage.getItem('employees')) ?? JSON.stringify(mockData)
+   );
+
+   const data = useMemo<cols[]>(() => employees, []);
+
+   //const data = useMemo<cols[]>(() => mockData, []);
 
    useTable({
       columns: columns,
-      data: mockData,
+      data: data,
    });
 
    const tableInstance = useTable(

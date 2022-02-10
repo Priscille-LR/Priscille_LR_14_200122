@@ -2,7 +2,6 @@ import { cols } from '../components/table/columns';
 import { Column } from 'react-table';
 
 export const mockData: cols[] = [
-   //export const mockData = [
    {
       firstName: 'Jim',
       lastName: 'Halpert',

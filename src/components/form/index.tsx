@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
+import moment, { Moment } from 'moment';
+import { Modal } from '@priscille-lr/react-modal';
 import { DatePicker } from './datePicker';
 import { FormInput, FormNumberInput } from './formInput';
 import { Select } from './select';
-import moment, { Moment } from 'moment';
-import './form.scss';
 import { departments } from '../../data/departments';
 import { states } from '../../data/states';
-import { Modal } from '@priscille-lr/react-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-   addEmployee,
-   reset,
-   IEmployee,
-} from '../../redux/features/addEmployee';
-import { GlobalState } from '../../redux/store/configureStore';
+import { addEmployee, IEmployee } from '../../redux/features/addEmployee';
+import './form.scss';
 
-export const Form = () => {
+/**
+ * form to create new employee
+ * modal is displayed when employee has been created successfully
+ */
+
+export const Form: React.FC = () => {
    const [firstName, setFirstName] = useState<string>('');
    const [lastName, setLastName] = useState<string>('');
    const [dateOfBirth, setDateOfBirth] = useState<Moment>(moment());
@@ -33,11 +33,11 @@ export const Form = () => {
       lastName: lastName,
       dateOfBirth: JSON.stringify(dateOfBirth),
       startDate: JSON.stringify(startDate),
+      department: department,
       street: street,
       city: city,
       zipCode: zipCode,
       state: state,
-      department: department,
    };
 
    const dispatch = useDispatch();
@@ -51,6 +51,15 @@ export const Form = () => {
       target.reset();
    };
 
+   const formatText = (
+      text: string,
+      callback: React.Dispatch<React.SetStateAction<string>>
+   ) => {
+      const lowerCase = text.trim().toLowerCase();
+      const formattedText = text.charAt(0).toUpperCase() + lowerCase.slice(1);
+      callback(formattedText);
+   };
+
    return (
       <section className="create-employee-content">
          <h1>Create Employee</h1>
@@ -58,17 +67,20 @@ export const Form = () => {
             <FormInput
                label={'First Name'}
                type="text"
-               callback={setFirstName}
+               callback={(text) => formatText(text, setFirstName)}
             />
-            <FormInput label={'Last Name'} type="text" callback={setLastName} />
-
-            {/* <FormDateInput label={'Date of Birth'} type="date" callback={setDateOfBirth} /> */}
+            <FormInput
+               label={'Last Name'}
+               type="text"
+               callback={(text) => formatText(text, setLastName)}
+            />
 
             <DatePicker
                name={'Date of Birth'}
                currentDate={dateOfBirth}
                callback={setDateOfBirth}
             />
+
             <DatePicker
                name={'Start Date'}
                currentDate={startDate}
@@ -76,13 +88,17 @@ export const Form = () => {
             />
 
             <h2>Adress</h2>
-            <FormInput label={'Street'} type="text" callback={setStreet} />
-            <FormInput label={'City'} type="text" callback={setCity} />
-            <FormNumberInput
-               label={'Zip Code'}
-               type="number"
-               callback={setZipCode}
+            <FormInput
+               label={'Street'}
+               type="text"
+               callback={(text) => formatText(text, setStreet)}
             />
+            <FormInput
+               label={'City'}
+               type="text"
+               callback={(text) => formatText(text, setCity)}
+            />
+            <FormNumberInput label={'Zip Code'} callback={setZipCode} />
             <span>State</span>
             <Select label={'State'} options={states} callback={setState} />
 
@@ -95,6 +111,7 @@ export const Form = () => {
 
             <button className="submit-btn">Save</button>
          </form>
+
          {showModal && (
             <Modal
                setShowModal={setShowModal}
