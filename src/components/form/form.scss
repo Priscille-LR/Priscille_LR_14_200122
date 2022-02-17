@@ -25,12 +25,14 @@
          text-align: left;
          margin-bottom: 1rem;
 
-         label {
-            font-weight: bold;
-         }
+         // label {
+         //    font-weight: bold;
+         // }
          input {
             padding: 5px;
             font-size: 1.1rem;
+            border: 0.5px solid black;
+            //border-radius: 5px;
          }
       }
       .submit-btn {
@@ -40,11 +42,27 @@
          font-size: 1.1rem;
          font-weight: bold;
          margin: 3rem auto 0 auto;
-         background-color: #b4d0f6;
+         background-color: #343e7a;
          color: #fff;
          border: none;
          border-radius: 10px;
          text-align: center;
+         &:hover {
+            background-color: lighten(#343e7a, 20%);
+         }
+      }
+      select {
+         padding: 7px;
+         border: 0.5px solid black;
+         //border-radius: 5px;
       }
    }
+}
+
+label {
+   font-weight: bold;
+}
+
+.modal-text {
+   text-align: center;
 }

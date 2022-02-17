@@ -15,9 +15,11 @@ export const GlobalFilter: React.FC<IGlobalFilter> = (props) => {
    return (
       <div className="global-search">
          <span className="">
-            Search:{' '}
+            <label htmlFor="search">Search</label>
             <input
                value={filter || ''}
+               name="search"
+               id="search"
                onChange={(e) => setFilter(e.target.value)}
             />
          </span>

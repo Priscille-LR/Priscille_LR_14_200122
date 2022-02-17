@@ -1,0 +1,19 @@
+.form-date-field {
+   margin-bottom: 1rem;
+   label {
+      font-weight: bold;
+   }
+   .react-datepicker__input-container {
+      input {
+         padding: 5px;
+         font-size: 1.1rem;
+      }
+   }
+   .react-datepicker__day--selected {
+      background-color: #343e7a;
+   }
+   .react-datepicker-popper[data-placement^='bottom']
+      .react-datepicker__triangle {
+      margin-left: -40px;
+   }
+}

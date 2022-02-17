@@ -10,6 +10,7 @@ import { mockData } from '../../data/mockData';
 import { COLUMNS } from './columns';
 import { cols } from './columns';
 import { GlobalFilter } from './filter/GlobalFilter';
+import { IEmployee, initialState } from '../../redux/features/addEmployee';
 import './table.scss';
 
 /**
@@ -18,18 +19,26 @@ import './table.scss';
  */
 
 export const EmployeesTable: React.FC = () => {
-   const columns = useMemo<Column<cols>[]>(() => COLUMNS, []); //ensures data is not recreated on every render
+   const employees = (): IEmployee[] => {
+      try {
+         return JSON.parse(window.localStorage.getItem('employees') ?? '');
+      } catch {
+         return initialState;
+      }
+   };
 
-   //const employees = window.localStorage.getItem('employees')
-   //|| mockData;
+   const columns = useMemo<Column<IEmployee>[]>(() => COLUMNS, []); //ensures data is not recreated on every render
 
-   const employees = JSON.parse(
-      (window.localStorage.getItem('employees')?.length === 0
-         ? null
-         : window.localStorage.getItem('employees')) ?? JSON.stringify(mockData)
-   );
+   //const employees: IEmployee[] = retrieveEmployees();
 
-   const data = useMemo<cols[]>(() => employees, []);
+   // const employees: cols[] = JSON.parse(
+   //    (window.localStorage.getItem('employees')?.length === 0
+   //       ? null
+   //       : window.localStorage.getItem('employees')) ??
+   //       JSON.stringify(initialState)
+   // );
+
+   const data = useMemo<IEmployee[]>(() => employees(), []);
 
    //const data = useMemo<cols[]>(() => mockData, []);
 

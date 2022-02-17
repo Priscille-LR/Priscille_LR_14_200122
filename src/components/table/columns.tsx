@@ -1,6 +1,7 @@
 import { Column } from 'react-table';
 import { format } from 'date-fns';
 import moment, { Moment } from 'moment';
+import { IEmployee } from '../../redux/features/addEmployee';
 
 /**
  * employees table columns
@@ -18,7 +19,7 @@ export type cols = {
    zipCode: number;
 };
 
-export const COLUMNS: Column<cols>[] = [
+export const COLUMNS: Column<IEmployee>[] = [
    {
       Header: 'Firstname',
       accessor: 'firstName',

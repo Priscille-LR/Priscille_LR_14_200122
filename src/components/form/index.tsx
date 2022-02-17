@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import moment, { Moment } from 'moment';
-import { Modal } from '@priscille-lr/react-modal';
-import { DatePicker } from './datePicker';
-import { FormInput, FormNumberInput } from './formInput';
+import { Modal } from 'react-modal-plr';
+import { FormTextInput, FormNumberInput } from './formInput';
 import { Select } from './select';
 import { departments } from '../../data/departments';
 import { states } from '../../data/states';
 import { useDispatch, useSelector } from 'react-redux';
 import { addEmployee, IEmployee } from '../../redux/features/addEmployee';
 import './form.scss';
+import { FormDate } from './datePicker';
 
 /**
  * form to create new employee
@@ -18,8 +18,12 @@ import './form.scss';
 export const Form: React.FC = () => {
    const [firstName, setFirstName] = useState<string>('');
    const [lastName, setLastName] = useState<string>('');
-   const [dateOfBirth, setDateOfBirth] = useState<Moment>(moment());
-   const [startDate, setStartDate] = useState<Moment>(moment());
+   // const [dateOfBirth, setDateOfBirth] = useState<string>('');
+   // const [startDate, setStartDate] = useState<string>('');
+   // const [dateOfBirth, setDateOfBirth] = useState<Moment>(moment());
+   // const [startDate, setStartDate] = useState<Moment>(moment());
+   const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
+   const [startDate, setStartDate] = useState<Date>(new Date());
    const [street, setStreet] = useState<string>('');
    const [city, setCity] = useState<string>('');
    const [zipCode, setZipCode] = useState<number>();
@@ -31,6 +35,8 @@ export const Form: React.FC = () => {
    const employee: IEmployee = {
       firstName: firstName,
       lastName: lastName,
+      // dateOfBirth: dateOfBirth,
+      // startDate: startDate,
       dateOfBirth: JSON.stringify(dateOfBirth),
       startDate: JSON.stringify(startDate),
       department: department,
@@ -64,36 +70,40 @@ export const Form: React.FC = () => {
       <section className="create-employee-content">
          <h1>Create Employee</h1>
          <form onSubmit={handleSubmit}>
-            <FormInput
+            <FormTextInput
                label={'First Name'}
                type="text"
                callback={(text) => formatText(text, setFirstName)}
             />
-            <FormInput
+            <FormTextInput
                label={'Last Name'}
                type="text"
                callback={(text) => formatText(text, setLastName)}
             />
 
-            <DatePicker
-               name={'Date of Birth'}
-               currentDate={dateOfBirth}
+            {/* <FormDateInput label={'Date of Birth'} callback={setDateOfBirth} />
+
+            <FormDateInput label={'Start Date'} callback={setStartDate} /> */}
+
+            <FormDate
+               label={'Date of Birth'}
+               selected={dateOfBirth}
                callback={setDateOfBirth}
             />
 
-            <DatePicker
-               name={'Start Date'}
-               currentDate={startDate}
+            <FormDate
+               label={'Start Date'}
+               selected={startDate}
                callback={setStartDate}
             />
 
             <h2>Adress</h2>
-            <FormInput
+            <FormTextInput
                label={'Street'}
                type="text"
                callback={(text) => formatText(text, setStreet)}
             />
-            <FormInput
+            <FormTextInput
                label={'City'}
                type="text"
                callback={(text) => formatText(text, setCity)}
@@ -115,8 +125,12 @@ export const Form: React.FC = () => {
          {showModal && (
             <Modal
                setShowModal={setShowModal}
-               modalTitle={'Success !'}
-               modalMessage={'Employee has been created'}
+               children={
+                  <>
+                     <h2>Success !</h2>
+                     <p>Employee has been created</p>
+                  </>
+               }
                buttonContent={'Close'}
             />
          )}

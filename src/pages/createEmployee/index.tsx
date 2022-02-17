@@ -6,3 +6,19 @@ export const CreateEmployee = () => (
       <Form />
    </main>
 );
+
+// import React, { Suspense } from 'react';
+
+// const FormComponent = React.lazy(() =>
+//    import('../../components/form').then(({ Form }) => ({
+//       default: Form,
+//    }))
+// );
+
+// export const CreateEmployee = () => (
+//    <div className="bg-dark">
+//       <Suspense fallback={<div>Chargement...</div>}>
+//          <FormComponent />
+//       </Suspense>
+//    </div>
+// );
