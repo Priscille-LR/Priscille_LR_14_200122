@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import {
    useTable,
    Column,
@@ -8,7 +9,12 @@ import {
 } from 'react-table';
 import { COLUMNS } from './columns';
 import { GlobalFilter } from './filter/GlobalFilter';
-import { IEmployee, initialState } from '../../redux/features/addEmployee';
+import {
+   IEmployee,
+   initialState,
+   selectEmployees,
+} from '../../redux/features/addEmployee';
+
 import './table.scss';
 
 /**
@@ -16,19 +22,14 @@ import './table.scss';
  * with functionalities such as sorting (asc/desc), filtering, and pagination options
  */
 
-const EmployeesTable: React.FC = () => {
-   const employees = (): IEmployee[] => {
-      try {
-         return JSON.parse(window.localStorage.getItem('employees') ?? '');
-      } catch {
-         return initialState;
-      }
-   };
+export const EmployeesTable: React.FC = () => {
+   const employeeList = useSelector(selectEmployees);
+   const employees = employeeList.length === 0 ? initialState : employeeList;
 
    //useMemo will only recompute the memoized value when one of the deps has changed.
    //ensures data is not recreated on every render => data is created on mount
    const columns = useMemo<Column<IEmployee>[]>(() => COLUMNS, []);
-   const data = useMemo<IEmployee[]>(() => employees(), []);
+   const data = useMemo<IEmployee[]>(() => employees, [employees]);
 
    useTable({
       columns: columns,

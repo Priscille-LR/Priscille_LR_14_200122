@@ -1,13 +1,17 @@
-import { configureStore, Slice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import employeeReducer, { IEmployee } from '../features/addEmployee';
 
-export type GlobalState = {
-   employee: Slice<Array<IEmployee>>;
-};
+// export type GlobalState = {
+//    employees: Slice<Array<IEmployee>>;
+// };
+
+export interface IGlobalState {
+   employees: IEmployee[];
+}
 
 export const store = configureStore({
    reducer: {
-      employee: employeeReducer,
+      employees: employeeReducer,
    },
 });
 

@@ -1,6 +1,4 @@
-import { IEmployee } from '../redux/features/addEmployee';
-
-export const mockData: IEmployee[] = [
+export const mockData = [
    {
       firstName: 'Jim',
       lastName: 'Halpert',

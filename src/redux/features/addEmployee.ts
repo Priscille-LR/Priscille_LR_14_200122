@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IGlobalState } from '../store/configureStore';
 
 export type IEmployee = {
    firstName: string;
@@ -81,17 +82,9 @@ export const initialState: IEmployee[] = [
    },
 ];
 
-const sessionState = () => {
-   try {
-      return JSON.parse(window.localStorage.getItem('employees') ?? '');
-   } catch {
-      return initialState;
-   }
-};
-
 const { actions, reducer } = createSlice({
-   name: 'employee',
-   initialState: sessionState,
+   name: 'employees',
+   initialState: initialState,
    reducers: {
       addEmployee: {
          prepare: (employee: IEmployee) => ({
@@ -99,12 +92,13 @@ const { actions, reducer } = createSlice({
          }),
          reducer: (draft, action: PayloadAction<IEmployee>) => {
             draft.push(action.payload);
-            window.localStorage.setItem('employees', JSON.stringify(draft));
             return;
          },
       },
    },
 });
+
+export const selectEmployees = (state: IGlobalState) => state.employees;
 
 export default reducer;
 
