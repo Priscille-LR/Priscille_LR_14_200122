@@ -1,27 +1,22 @@
 import React, { useState } from 'react';
-import moment, { Moment } from 'moment';
-import { Modal } from 'react-modal-plr';
 import { FormTextInput, FormNumberInput } from './formInput';
 import { Select } from './select';
 import { departments } from '../../data/departments';
 import { states } from '../../data/states';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addEmployee, IEmployee } from '../../redux/features/addEmployee';
-import './form.scss';
 import { FormDate } from './datePicker';
+import { Modal } from 'react-modal-plr';
+import './form.scss';
 
 /**
  * form to create new employee
  * modal is displayed when employee has been created successfully
  */
 
-export const Form: React.FC = () => {
+const Form: React.FC = () => {
    const [firstName, setFirstName] = useState<string>('');
    const [lastName, setLastName] = useState<string>('');
-   // const [dateOfBirth, setDateOfBirth] = useState<string>('');
-   // const [startDate, setStartDate] = useState<string>('');
-   // const [dateOfBirth, setDateOfBirth] = useState<Moment>(moment());
-   // const [startDate, setStartDate] = useState<Moment>(moment());
    const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
    const [startDate, setStartDate] = useState<Date>(new Date());
    const [street, setStreet] = useState<string>('');
@@ -35,8 +30,6 @@ export const Form: React.FC = () => {
    const employee: IEmployee = {
       firstName: firstName,
       lastName: lastName,
-      // dateOfBirth: dateOfBirth,
-      // startDate: startDate,
       dateOfBirth: JSON.stringify(dateOfBirth),
       startDate: JSON.stringify(startDate),
       department: department,
@@ -80,10 +73,6 @@ export const Form: React.FC = () => {
                type="text"
                callback={(text) => formatText(text, setLastName)}
             />
-
-            {/* <FormDateInput label={'Date of Birth'} callback={setDateOfBirth} />
-
-            <FormDateInput label={'Start Date'} callback={setStartDate} /> */}
 
             <FormDate
                label={'Date of Birth'}
@@ -137,3 +126,4 @@ export const Form: React.FC = () => {
       </section>
    );
 };
+export default Form;

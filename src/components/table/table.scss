@@ -36,7 +36,22 @@ table th {
    background-color: #343e7a;
    color: white;
 }
+select {
+   padding: 5px;
+}
+.page-nav {
+   justify-content: space-around;
 
-button:disabled {
-   background: lighten(#343e7a, 20%);
+   button {
+      color: white;
+      background-color: #343e7a;
+      border-radius: 3px;
+      border: none;
+      margin: 0 0.5rem;
+      padding: 0.5rem;
+   }
+   button:disabled {
+      color: white;
+      background: lighten(#343e7a, 30%);
+   }
 }

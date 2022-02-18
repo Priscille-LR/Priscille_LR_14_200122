@@ -6,9 +6,7 @@ import {
    useGlobalFilter,
    usePagination,
 } from 'react-table';
-import { mockData } from '../../data/mockData';
 import { COLUMNS } from './columns';
-import { cols } from './columns';
 import { GlobalFilter } from './filter/GlobalFilter';
 import { IEmployee, initialState } from '../../redux/features/addEmployee';
 import './table.scss';
@@ -18,7 +16,7 @@ import './table.scss';
  * with functionalities such as sorting (asc/desc), filtering, and pagination options
  */
 
-export const EmployeesTable: React.FC = () => {
+const EmployeesTable: React.FC = () => {
    const employees = (): IEmployee[] => {
       try {
          return JSON.parse(window.localStorage.getItem('employees') ?? '');
@@ -29,18 +27,7 @@ export const EmployeesTable: React.FC = () => {
 
    const columns = useMemo<Column<IEmployee>[]>(() => COLUMNS, []); //ensures data is not recreated on every render
 
-   //const employees: IEmployee[] = retrieveEmployees();
-
-   // const employees: cols[] = JSON.parse(
-   //    (window.localStorage.getItem('employees')?.length === 0
-   //       ? null
-   //       : window.localStorage.getItem('employees')) ??
-   //       JSON.stringify(initialState)
-   // );
-
    const data = useMemo<IEmployee[]>(() => employees(), []);
-
-   //const data = useMemo<cols[]>(() => mockData, []);
 
    useTable({
       columns: columns,
@@ -145,7 +132,7 @@ export const EmployeesTable: React.FC = () => {
                      value={pageSize}
                      onChange={(e) => setPageSize(Number(e.target.value))}
                   >
-                     {[10, 25, 50, 100].map((pageSize) => (
+                     {[5, 10, 25, 50, 100].map((pageSize) => (
                         <option key={pageSize} value={pageSize}>
                            Show {pageSize}
                         </option>
@@ -157,3 +144,5 @@ export const EmployeesTable: React.FC = () => {
       </>
    );
 };
+
+export default EmployeesTable;

@@ -1,8 +1,8 @@
-import './globalFilter.scss';
-
 /**
  * global filtering functionality
  */
+
+import './globalFilter.scss';
 
 interface IGlobalFilter {
    filter: string;
@@ -15,7 +15,7 @@ export const GlobalFilter: React.FC<IGlobalFilter> = (props) => {
    return (
       <div className="global-search">
          <span className="">
-            <label htmlFor="search">Search</label>
+            <label htmlFor="search">Search </label>
             <input
                value={filter || ''}
                name="search"

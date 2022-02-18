@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import moment from 'moment';
 
 export type IEmployee = {
    firstName: string;
@@ -104,12 +103,9 @@ const { actions, reducer } = createSlice({
             return;
          },
       },
-      reset: () => {
-         return initialState;
-      },
    },
 });
 
 export default reducer;
 
-export const { addEmployee, reset } = actions;
+export const { addEmployee } = actions;

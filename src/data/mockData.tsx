@@ -1,7 +1,6 @@
-import { cols } from '../components/table/columns';
-import { Column } from 'react-table';
+import { IEmployee } from '../redux/features/addEmployee';
 
-export const mockData: cols[] = [
+export const mockData: IEmployee[] = [
    {
       firstName: 'Jim',
       lastName: 'Halpert',

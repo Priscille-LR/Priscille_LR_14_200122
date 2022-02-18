@@ -1,37 +1,41 @@
 import 'react-dates/initialize';
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import reportWebVitals from './reportWebVitals';
-import { Error } from './pages/error';
-import { Header } from './components/header';
-import { Home } from './pages/home';
-import { EmployeeList } from './pages/employeeList';
-import { CreateEmployee } from './pages/createEmployee';
-import { Footer } from './components/footer';
 import { store } from './redux/store/configureStore';
+//import { Error } from './pages/error';
+// import Home from './pages/home';
+// import EmployeeList from './pages/employeeList';
+// import CreateEmployee from './pages/createEmployee';
+import { Header } from './components/header';
+import { Footer } from './components/footer';
 import './index.css';
+
+const HomePage = React.lazy(() => import('./pages/home'));
+const CreateEmployeePage = React.lazy(() => import('./pages/createEmployee'));
+const EmployeeListPage = React.lazy(() => import('././pages/employeeList'));
+const ErrorPage = React.lazy(() => import('./pages/error'));
 
 ReactDOM.render(
    <Provider store={store}>
       <React.StrictMode>
          <BrowserRouter>
-            <Header />
-            <Routes>
-               <Route path="/" element={<Home />} />
-               <Route path="/create-employee" element={<CreateEmployee />} />
-               <Route path="/employee-list" element={<EmployeeList />} />
-               <Route path="/*" element={<Error />} />
-            </Routes>
-            <Footer />
+            <Suspense fallback={<div>Loading...</div>}>
+               <Header />
+               <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route
+                     path="/create-employee"
+                     element={<CreateEmployeePage />}
+                  />
+                  <Route path="/employee-list" element={<EmployeeListPage />} />
+                  <Route path="/*" element={<ErrorPage />} />
+               </Routes>
+               <Footer />
+            </Suspense>
          </BrowserRouter>
       </React.StrictMode>
    </Provider>,
    document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

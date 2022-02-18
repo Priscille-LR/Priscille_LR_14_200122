@@ -1,6 +1,6 @@
 import './hero.scss';
 
-export const Hero = () => (
+const Hero = () => (
    <div className="hero">
       <section className="hero_content">
          <h1>Transforming the workplace</h1>
@@ -10,3 +10,5 @@ export const Hero = () => (
       </section>
    </div>
 );
+
+export default Hero;

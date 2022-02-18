@@ -1,16 +1,16 @@
-import React from 'react';
-
 /**
  * create reusable inputs for the form
  */
 
-interface IFormInput {
+import React from 'react';
+
+interface IFormTextInput {
    label: string;
    type: string;
    callback: (text: string) => void;
 }
 
-export const FormTextInput: React.FC<IFormInput> = (props) => {
+export const FormTextInput: React.FC<IFormTextInput> = (props) => {
    const { label, type, callback } = props;
 
    return (
@@ -50,26 +50,3 @@ export const FormNumberInput: React.FC<IFormNumberInput> = (props) => {
       </div>
    );
 };
-
-// interface IFormDateInput {
-//    label: string;
-//    callback: React.Dispatch<React.SetStateAction<string>>;
-// }
-
-// export const FormDateInput: React.FC<IFormDateInput> = (props) => {
-//    const { label, callback } = props;
-
-//    return (
-//       <div className="input-wrapper">
-//          <label htmlFor={label}>{label}</label>
-//          <input
-//             type="date"
-//             id={label}
-//             required={true}
-//             onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
-//                callback(e.target.value);
-//             }}
-//          />
-//       </div>
-//    );
-// };

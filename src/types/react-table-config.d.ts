@@ -115,8 +115,8 @@ declare module 'react-table' {
          UseSortByColumnProps<D> {}
 
    export interface Cell<
-      D extends Record<string, unknown> = Record<string, unknown>,
-      V = any
+      D extends Record<string, unknown> = Record<string, unknown>
+      // V = any
    > extends UseGroupByCellProps<D>,
          UseRowStateCellProps<D> {}
 
