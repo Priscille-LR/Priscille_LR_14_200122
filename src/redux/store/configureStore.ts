@@ -1,10 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import employeeReducer, { IEmployee } from '../features/addEmployee';
 
-// export type GlobalState = {
-//    employees: Slice<Array<IEmployee>>;
-// };
-
 export interface IGlobalState {
    employees: IEmployee[];
 }

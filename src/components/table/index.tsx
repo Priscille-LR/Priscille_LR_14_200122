@@ -83,8 +83,8 @@ export const EmployeesTable: React.FC = () => {
                               <span>
                                  {column.isSorted
                                     ? column.isSortedDesc
-                                       ? '🔽'
-                                       : '🔼 '
+                                       ? ' 🔽'
+                                       : ' 🔼'
                                     : ''}
                               </span>
                            </th>

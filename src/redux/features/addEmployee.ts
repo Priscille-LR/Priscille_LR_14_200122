@@ -67,18 +67,18 @@ export const initialState: IEmployee[] = [
       street: 'Schrute Farms',
       city: 'Stamford',
       zipCode: 4547,
-      state: 'Ney Jersey',
+      state: 'New Jersey',
    },
    {
       firstName: 'Ryan',
       lastName: 'Howard',
       dateOfBirth: '1985-08-12',
       startDate: '2006-12-10',
-      department: 'Engineer',
+      department: 'Engineering',
       street: '916 Bellgrove Court',
       city: 'New York',
       zipCode: 4547,
-      state: 'Ney York',
+      state: 'New York',
    },
 ];
 
