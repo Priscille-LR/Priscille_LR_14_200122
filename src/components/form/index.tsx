@@ -77,12 +77,14 @@ const Form: React.FC = () => {
             <FormDate
                label={'Date of Birth'}
                selected={dateOfBirth}
+               dateFormat={'dd/MM/yyyy'}
                callback={setDateOfBirth}
             />
 
             <FormDate
                label={'Start Date'}
                selected={startDate}
+               dateFormat={'dd/MM/yyyy'}
                callback={setStartDate}
             />
 

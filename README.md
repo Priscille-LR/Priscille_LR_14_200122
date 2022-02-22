@@ -7,12 +7,12 @@ Project 14 of Open Classrooms "Front-end Developer programme"
 
 ## Convert a jQuery Library to React
 
-Help refactor HRnet's website. THe objectives are :
+Help refactor HRnet's website. THe objectives are to:
 
--  Rebuilding an app - migrating an App from jQuery to React to reduce technical debt.
--  Using functional programming paradigm
--  Turning a jQuery library and into a React plugin.
--  Using LightHouse to monitor the performance of the new code.
+-  Rebuild an app - migrating an App from jQuery to React to reduce technical debt.
+-  Use functional programming paradigm
+-  Turn a jQuery library and into a React plugin.
+-  Use LightHouse to monitor the performance of the new code.
 
 # Prerequisites
 
@@ -23,3 +23,9 @@ Help refactor HRnet's website. THe objectives are :
 -  Clone this repository on your computer then open the folder
 -  Install the dependencies with `npm install`
 -  Run the app with `npm start`
+
+# Dependencies
+
+-  [React Modal](https://www.npmjs.com/package/react-modal-plr)
+-  [React Table](https://www.npmjs.com/package/react-table)
+-  [React Datepicker](https://www.npmjs.com/package/react-datepicker)

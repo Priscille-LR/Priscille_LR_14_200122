@@ -25,8 +25,9 @@ const EmployeesTable: React.FC = () => {
       }
    };
 
-   const columns = useMemo<Column<IEmployee>[]>(() => COLUMNS, []); //ensures data is not recreated on every render
-
+   //useMemo will only recompute the memoized value when one of the deps has changed.
+   //ensures data is not recreated on every render => data is created on mount
+   const columns = useMemo<Column<IEmployee>[]>(() => COLUMNS, []);
    const data = useMemo<IEmployee[]>(() => employees(), []);
 
    useTable({
