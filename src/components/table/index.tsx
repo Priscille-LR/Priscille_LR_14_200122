@@ -14,7 +14,6 @@ import {
    initialState,
    selectEmployees,
 } from '../../redux/features/addEmployee';
-
 import './table.scss';
 
 /**
@@ -27,7 +26,7 @@ export const EmployeesTable: React.FC = () => {
    const employees = employeeList.length === 0 ? initialState : employeeList;
 
    //useMemo will only recompute the memoized value when one of the deps has changed.
-   //ensures data is not recreated on every render => data is created on mount
+   //ensures data is not recreated on every render
    const columns = useMemo<Column<IEmployee>[]>(() => COLUMNS, []);
    const data = useMemo<IEmployee[]>(() => employees, [employees]);
 
