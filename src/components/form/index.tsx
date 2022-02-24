@@ -30,8 +30,8 @@ const Form: React.FC = () => {
    const employee: IEmployee = {
       firstName: firstName,
       lastName: lastName,
-      dateOfBirth: JSON.stringify(dateOfBirth),
-      startDate: JSON.stringify(startDate),
+      dateOfBirth: dateOfBirth.toISOString(),
+      startDate: startDate.toISOString(),
       department: department,
       street: street,
       city: city,

@@ -19,14 +19,14 @@ export const COLUMNS: Column<IEmployee>[] = [
       Header: 'Date of Birth',
       accessor: 'dateOfBirth',
       Cell: ({ value }) => {
-         return moment(value, 'YYYY-MM-DDTHH:mm:ssZ').format('DD/MM/YYYY'); //format date
+         return moment(value, 'YYYY-MM-DDTHH:mm:ss.SSSZ').format('DD/MM/YYYY'); //format date
       },
    },
    {
       Header: 'Start Date',
       accessor: 'startDate',
       Cell: ({ value }) => {
-         return moment(value, 'YYYY-MM-DDTHH:mm:ssZ').format('DD/MM/YYYY');
+         return moment(value, 'YYYY-MM-DDTHH:mm:ss.SSSZ').format('DD/MM/YYYY');
       },
    },
    {
